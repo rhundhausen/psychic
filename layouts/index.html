@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ .Site.Title }}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="controls-container">
+    <div>
+      <select id="drpValue">
+        <option value="Days">Days</option>
+        <option value="Hours" selected>Hours</option>
+        <option value="Points">Points</option>
+        <option value="Goal">Goal</option>
+      </select>
+      <br/>
+      <select class="accuracy-dropdown">
+        <option>Accuracy: Not very</option>
+        <option selected>Accuracy: Somewhat</option>
+        <option>Accuracy: Good</option>
+        <optgroup label="Accuracy: Very (Silver members only)"></optgroup>
+        <optgroup label="Accuracy: Extremely (Gold members only)"></optgroup>
+        <optgroup label="100% Accurate (Platinum members only)"></optgroup>
+      </select>
+      <br/>
+      <input type="button" value="PREDICT" />
+      <br/>
+      <span id="resultLabel"></span>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function getRandomNumber(max) {
+        return Math.floor(Math.random() * max);
+      }
+
+      function randomFibonacci() {
+        const values = [0, 1, 2, 3, 5, 8, 13, 21, ];
+        return values[getRandomNumber(values.length)];
+      }
+
+      function pick(wordSet) {
+        const words = wordSet.split(',');
+        return ' ' + words[getRandomNumber(words.length)];
+      }
+
+      function randomSprintGoal() {
+        const verbs = "improve,increase,decrease,demonstrate,amplify,measure,reconcile,normalize,streamline,enforce,monetize,commoditize,strengthen,fix,reduce";
+        const subjects1 = "customer,client,employee,stakeholder,decision maker,investor";
+        const objects = "opportunities,capabilities,options,decisions,security,performance,usability,market share,income,expense,profit,awareness,sales,leads,bugs,features";
+        const subjects2 = "product,company,software,market,community,social media";
+
+        let goal = "To";
+        goal += pick(verbs);
+        goal += pick(subjects1);
+        goal += pick(objects);
+        goal += " and";
+        goal += pick(verbs);
+        goal += pick(subjects2);
+        goal += pick(objects);
+        goal += ".";
+        return goal;
+      }
+
+      function gaze() {
+        const select = document.getElementById("drpValue");
+        const output = document.getElementById("resultLabel");
+
+        if (!select || !output) {
+          console.error("Missing #drpValue or #resultLabel in the DOM.");
+          return;
+        }
+
+        const value = select.value.toLowerCase();
+        let random;
+        let text;
+
+        switch (value) {
+          case "goal":
+            text = "Goal: " + randomSprintGoal();
+            output.style.fontSize = "1.1em";
+            break;
+
+          case "days":
+            random = getRandomNumber(30);
+            output.style.fontSize = "2em";
+            text = `${random} ${random === 1 ? "day" : "days"}`;
+            break;
+
+          case "hours":
+            random = getRandomNumber(240);
+            output.style.fontSize = "2em";
+            text = `${random} ${random === 1 ? "hour" : "hours"}`;
+            break;
+
+          case "points":
+            random = randomFibonacci();
+            output.style.fontSize = "2em";
+            text = `${random} ${random === 1 ? "point" : "points"}`;
+            break;
+
+          default:
+            random = getRandomNumber(240);
+            text = `${random} ${value}`;
+            break;
+        }
+
+        output.textContent = text;
+      }
+
+      // Attach events
+      document.getElementById("drpValue").addEventListener("change", gaze);
+      document.querySelector("input[type='button']").addEventListener("click", gaze);
+
+      // Run once on load
+      gaze();
+    });
+  </script>
+</body>
+</html>
