@@ -88,10 +88,10 @@ optgroup {
   }
 
   .controls-container {
-    bottom: 300px;
+    bottom: 500px;
     width: 100%;
     padding: 20px 10px;
-    left: 57%;
+    left: 62%;
     transform: translateX(-50%);
     z-index: 10;
   }
