@@ -19,13 +19,14 @@ body {
 }
 
 .controls-container {
-  position: absolute;
-  bottom: 2in;               /* moves it up from the bottom */
-  left: 53%;                 /* start from center of screen */
-  transform: translateX(-50%); /* center horizontally */
+  position: fixed;              /* 👈 Fix to viewport instead of page */
+  bottom: 100px;                /* 👈 ~1.4in for visual spacing */
+  left: 53%;
+  transform: translateX(-50%);
   text-align: center;
-  padding: 50px 20px;
+  padding: 30px 20px;
   background: transparent;
+  z-index: 10;                  /* 👈 stay on top just in case */
 }
 
 .message {
@@ -69,44 +70,42 @@ optgroup {
 
 #resultLabel {
   display: block;
-  margin: 20px auto 0 auto; /* top auto-bottom margins for spacing and centering */
-  max-width: 80%;
+  margin: 20px auto 0 auto;
   text-align: center;
+  max-width: 90%;
   color: blue;
-  /*font-size: 1em; */
+  font-size: 2em;         /* consistent */
   line-height: 1.4;
   word-wrap: break-word;
+  height: 3.5em;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
 }
 
 @media (max-width: 600px) {
   body {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .controls-container {
-    bottom: 3in; /* lower it slightly for phones */
-    padding: 30px 10px;
-    left: 57%; /* precise centering */
+    bottom: 300px;
+    width: 100%;
+    padding: 20px 10px;
+    left: 57%;
     transform: translateX(-50%);
+    z-index: 10;
   }
 
-  .message {
-    font-size: 20px;
-    height: auto;
-    margin-bottom: 15px;
-  }
-
-  select,
-  .accuracy-dropdown,
-  input[type="button"] {
-    font-size: 18px;
-    padding: 8px 15px;
-    margin: 8px;
-    width: 90%; /* stack nicely on small screens */
-    max-width: 300px;
-  }
-
-  .accuracy-dropdown {
-    width: 90%;
-  }
+  #resultLabel {
+    display: block;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    width: 100%;
+    color: blue;
+    font-size: 2em;         /* consistent */
+    line-height: 1.4;
+    height: 3.5em;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    }
 }

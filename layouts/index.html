@@ -6,6 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div class="controls-container">
     <div>
@@ -27,8 +28,8 @@
       <br/>
       <input type="button" value="PREDICT" />
       <br/>
+      <!-- ✅ Correct placement: inside the controls div -->
       <span id="resultLabel"></span>
-
     </div>
   </div>
 
@@ -39,7 +40,7 @@
       }
 
       function randomFibonacci() {
-        const values = [0, 1, 2, 3, 5, 8, 13, 21, ];
+        const values = [0, 1, 2, 3, 5, 8, 13, 21];
         return values[getRandomNumber(values.length)];
       }
 
@@ -79,27 +80,26 @@
         let random;
         let text;
 
+        output.style.transform = "scale(1)"; // default size
+
         switch (value) {
           case "goal":
             text = "Goal: " + randomSprintGoal();
-            output.style.fontSize = "1.1em";
+            output.style.transform = "scale(0.7)"; // smaller visual size
             break;
 
           case "days":
             random = getRandomNumber(30);
-            output.style.fontSize = "2em";
             text = `${random} ${random === 1 ? "day" : "days"}`;
             break;
 
           case "hours":
             random = getRandomNumber(240);
-            output.style.fontSize = "2em";
             text = `${random} ${random === 1 ? "hour" : "hours"}`;
             break;
 
           case "points":
             random = randomFibonacci();
-            output.style.fontSize = "2em";
             text = `${random} ${random === 1 ? "point" : "points"}`;
             break;
 
@@ -112,7 +112,6 @@
         output.textContent = text;
       }
 
-      // Attach events
       document.getElementById("drpValue").addEventListener("change", gaze);
       document.querySelector("input[type='button']").addEventListener("click", gaze);
     });
