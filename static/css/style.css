@@ -84,16 +84,30 @@ optgroup {
 
 @media (max-width: 600px) {
   body {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .controls-container {
-    bottom: 500px;
+    bottom: 50px;
     width: 100%;
     padding: 20px 10px;
-    left: 62%;
+    left: 57%;
     transform: translateX(-50%);
     z-index: 10;
+  }
+
+  select,
+  .accuracy-dropdown {
+    font-size: 12px;
+    padding: 6px;
+    margin: 6px;
+    width: 125px;
+  }
+
+  input[type="button"] {
+    font-size: 12px;
+    padding: 8px 16px;
+    margin: 6px;
   }
 
   #resultLabel {
@@ -102,7 +116,7 @@ optgroup {
     text-align: center;
     width: 100%;
     color: blue;
-    font-size: 2em;         /* consistent */
+    font-size: 1em;         /* consistent */
     line-height: 1.4;
     height: 3.5em;
     overflow: hidden;
