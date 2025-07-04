@@ -137,27 +137,26 @@ optgroup {
   }
 }
 
-@media only screen and (max-width: 812px) and (orientation: landscape) {
+@media only screen and (orientation: landscape) and (max-height: 500px) {
   .controls-container {
-    bottom: 10px; /* 👈 move it a bit lower */
-    padding: 10px 8px;
+    bottom: 20px;
+    padding: 10px 5px;
     transform: translateX(-50%);
   }
 
-  .controls-container select,
-  .controls-container .accuracy-dropdown,
-  .controls-container input[type="button"] {
-    font-size: 12px;
-    padding: 6px;
-    margin: 4px;
-    width: 120px;
+  select,
+  .accuracy-dropdown,
+  input[type="button"] {
+    font-size: 14px;
+    padding: 6px 10px;
+    margin: 6px;
+    width: 150px;
   }
 
   #resultLabel {
-    font-size: 0.9em;
+    font-size: 1em;
+    height: auto;
     line-height: 1.2;
-    max-height: 3em;
-    margin-bottom: 10px;
-    transform: scale(0.9); /* 👈 subtle visual shrink */
+    max-height: 4em;
   }
 }
